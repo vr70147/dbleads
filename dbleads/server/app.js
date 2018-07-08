@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo')(session);
 mongoose.Promise = global.Promise;
 const http = require('http');
 const async = require('async');
+const cors = require('cors');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 // const User = require('./models/user');
@@ -20,7 +21,7 @@ const app = express();
 // Data base connection
 mongoose.connect(mongoUrl, err => { err ? console.log('could not connect server') : app.listen('3000', () => { console.log('SERVER UP')})
 });
-
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());

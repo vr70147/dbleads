@@ -6,11 +6,9 @@ const User = require('../models/user');
 module.exports = passport => {
 
     passport.serializeUser(function( user, done ){
-        console.log("serialized");
         done( null, user );
     });
     passport.deserializeUser(function( id, done ){
-        console.log("deserialized");
         User.findById(id, (err, user) => {
             done( false, user );
         })
@@ -44,7 +42,6 @@ module.exports = passport => {
             req.checkBody('confirmPassword', 'Passwords do not match').equals(password);
             
             const errors = req.validationErrors();
-            console.log(errors);
             const newUser = new User();
             newUser.companyName = companyName;
             newUser.street = street;

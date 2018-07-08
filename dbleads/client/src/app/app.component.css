@@ -1,0 +1,11 @@
+app-header {
+  height: 80px;
+  width: 100%;
+  display: inline-flex;
+}
+app-functions {
+  height: 100%;
+  width: 15%;
+  display: inline-flex;
+}
+

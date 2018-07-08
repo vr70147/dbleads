@@ -1,0 +1,40 @@
+header {
+  display: inline-flex;
+  background-color: #00CAE6;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 80px;
+  width: 100%;
+}
+.logo {
+  display: inline-flex;
+  align-self: flex-start;
+  max-width: 20%;
+  height: 100%;
+  margin-left: 1%;
+}
+.logo img {
+  width: auto;
+  height: 100%;
+}
+.user {
+  display: inline-flex;
+  align-self: flex-end;
+  width: 10%;
+  height: 100%;
+}
+.user button {
+  color: white;
+  border-left: 2px solid rgb(13, 181, 207, 0.5);
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  background-color: rgb(16, 215, 241);
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.user button:hover {
+  background-color: rgba(16, 164, 184, 0.383);
+}
