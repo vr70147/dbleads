@@ -34,6 +34,8 @@ header {
   text-align: center;
   width: 100%;
   height: 100%;
+  font-family: 'Exo', sans-serif;
+  font-weight: bolder;
 }
 .user button:hover {
   background-color: rgba(16, 164, 184, 0.383);

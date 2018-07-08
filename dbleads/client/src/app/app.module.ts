@@ -1,14 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FunctionsComponent } from './functions/functions.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CampaignsComponent } from './campaigns/campaigns.component';
 import { LeadsComponent } from './leads/leads.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
+  {
+    path: '',
+    component: UnauthorizedComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
   {
     path: 'campaigns',
     component: CampaignsComponent
@@ -25,11 +36,14 @@ const appRoutes: Routes = [
     HeaderComponent,
     FunctionsComponent,
     CampaignsComponent,
-    LeadsComponent
+    LeadsComponent,
+    UnauthorizedComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

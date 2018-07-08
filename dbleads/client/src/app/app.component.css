@@ -2,6 +2,7 @@ app-header {
   height: 80px;
   width: 100%;
   display: inline-flex;
+  margin: 0;
 }
 app-functions {
   height: 100%;

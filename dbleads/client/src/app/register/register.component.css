@@ -1,0 +1,92 @@
+section {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+  background-color: #EBEDF3;
+  height: 100%;
+  width: 100%;
+  align-self: flex-end;
+  flex-wrap: wrap;
+  margin-left: 5px;
+}
+
+section form {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 25%;
+  margin: 0 auto;
+  height: auto;
+  padding: 2%;
+  margin-top: 5%;
+  background-color: #393F54;
+}
+
+section form h1 {
+  color: lightgray;
+  font-weight: 100;
+  margin: 1%;
+}
+
+.input-field {
+  width: 80%;
+  height: 40px;
+  background: none;
+  border: 1px solid lightgrey;
+  align-self: center;
+  outline: none;
+  margin-top: 2%;
+  font-family: 'Exo', sans-serif;
+  font-size: 20px;
+  color: lightgray;
+  padding: 2%;
+}
+
+.input-field::placeholder {
+  color: gray;
+}
+
+.checkbox-container{
+  display: inline-flex;
+  flex-direction: row;
+  width: 84%;
+  height: auto;
+  align-self: center;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 3%;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  margin: 0;
+  margin-right: 2%;
+}
+
+section form label {
+  font-size: 16px;
+  color: lightgray;
+}
+
+.form-button {
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 50px;
+  width: 84%;
+  background-color: #00CAE6;
+  border: none;
+  margin-top: 3%;
+  font-size: 20px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 200;
+  padding: 2%;
+  box-sizing: border-box;
+}
