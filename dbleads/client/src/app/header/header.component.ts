@@ -7,9 +7,10 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-
+  user: String;
   constructor( private service: HeroService ) {}
 
-  ngOnInit() {}
-
+  ngOnInit() {
+   this.user = this.service.username;
+  }
 }

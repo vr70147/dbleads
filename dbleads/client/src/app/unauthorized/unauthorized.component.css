@@ -22,3 +22,62 @@ section img {
 section h1 {
   margin: 0;
 }
+section form {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 25%;
+  margin: 0 auto;
+  height: auto;
+  padding: 2%;
+  margin-top: 2%;
+  background-color: #393F54;
+}
+section form h4 {
+  color: lightgray;
+  margin-bottom: 0;
+}
+section form h4 a {
+  color: #00CAE6;
+}
+section form h1 {
+  color: lightgray;
+  font-weight: 100;
+  margin: 1%;
+}
+
+.input-field {
+  width: 80%;
+  height: 40px;
+  background: none;
+  border: 1px solid lightgrey;
+  align-self: center;
+  outline: none;
+  margin-top: 2%;
+  font-family: 'Exo', sans-serif;
+  font-size: 20px;
+  color: lightgray;
+  padding: 2%;
+}
+
+.input-field::placeholder {
+  color: gray;
+}
+.form-button {
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 50px;
+  width: 84%;
+  background-color: #00CAE6;
+  border: none;
+  margin-top: 3%;
+  font-size: 20px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 200;
+  padding: 2%;
+  box-sizing: border-box;
+}

@@ -10,6 +10,8 @@ import { CampaignsComponent } from './campaigns/campaigns.component';
 import { LeadsComponent } from './leads/leads.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { RegisterComponent } from './register/register.component';
+import { HeroService } from './hero.service';
+
 
 const appRoutes: Routes = [
   {
@@ -46,7 +48,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

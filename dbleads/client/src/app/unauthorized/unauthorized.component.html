@@ -3,8 +3,14 @@
   <h1>
     Welcome to DBleads system!
   </h1>
-  <h4>
-    Please login first or <a href="../register">register</a>
-  </h4>
+  <form method="POST" #user="ngForm" (ngSubmit)="onSubmit(user.value)" >
+      <input type="text" class="input-field" placeholder="Username" name="username" ngModel>
+      <input type="password" class="input-field" placeholder="Password" name="password" ngModel>
+      <button type="submit" class="form-button">Log in</button>
+      <h4>
+          not a member? <a href="../register">register</a>
+        </h4>
+    </form>
+
 </section>
 

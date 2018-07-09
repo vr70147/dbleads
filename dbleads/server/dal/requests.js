@@ -51,11 +51,15 @@ const addCampaign = (req, res, next ) => {
 };
 
 const getUserCampaign = ( req, res, next ) => {
-    const userId = req.session.passport.user._id;
-	Campaigns.find({ userId: userId }, ( err, campaign ) => {
-		if (err){ return console.log(err)};
-		res.status(200).json(campaign);
-	});
+    if(req.session.passport) {
+        const userId = req.session.passport.user._id;
+	    Campaigns.find({ userId: userId }, ( err, campaign ) => {
+            if (err){ return console.log(err)};
+            res.status(200).json(campaign);
+        });
+        return next();
+    }
+    
 };
 
 
