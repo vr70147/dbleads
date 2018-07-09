@@ -7,10 +7,17 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  user: String;
   constructor( private service: HeroService ) {}
+  user: String;
+  flag: Boolean = false;
 
   ngOnInit() {
-   this.user = this.service.username;
+  }
+  test() {
+    if ( this.service.username ) {
+      this.user = this.service.username.user;
+      return true;
+    }
+    return false;
   }
 }

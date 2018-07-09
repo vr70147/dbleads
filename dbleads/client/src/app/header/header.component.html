@@ -3,6 +3,8 @@
   <img src="../../assets/images/DevolutionsCloud-Database-White-HR.png" alt="">
 </div>
 <div class="user">
-  <h3>{{ user }}</h3>
+  <h3 *ngIf="!test()">Hello Guest</h3>
+  <h3 *ngIf="test()">Hello {{ user }}</h3>
+  <button *ngIf="test()">Logout</button>
 </div>
 </header>

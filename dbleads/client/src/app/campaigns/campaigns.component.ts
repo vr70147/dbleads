@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import { HeroService } from '../hero.service';
+
 
 @Component({
   selector: 'app-campaigns',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CampaignsComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router: Router, private service: HeroService ) { }
 
   ngOnInit() {
+    if ( this.service.username === undefined ) {
+      this.router.navigate(['']);
+    }
   }
 
 }
