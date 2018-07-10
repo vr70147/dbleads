@@ -9,22 +9,24 @@ const http = require('http');
 const async = require('async');
 const cors = require('cors');
 const passport = require('passport');
+const path = require('path');
 const LocalStrategy = require('passport-local').Strategy;
 // const User = require('./models/user');
 const expressValidator = require('express-validator');
-const users = require('./routes/users');
-const routes = require('./routes/index');
+const users = require('./server/routes/users');
+const routes = require('./server/routes/index');
 const mongoUrl = 'mongodb://vr70147:pb63xbcx@ds137740.mlab.com:37740/tasks';
-
 const app = express();
+const server = http.createServer(app);
 
 // Data base connection
-mongoose.connect(mongoUrl, err => { err ? console.log('could not connect server') : app.listen('3000', () => { console.log('SERVER UP')})
+mongoose.connect(mongoUrl, { useNewUrlParser: true }, err => { err ? console.log('could not connect server') : server.listen('3000', () => { console.log('SERVER UP')})
 });
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'dist' )));
 
 app.use(session({
     secret: "dbleadsthecoolestleadssystem",
@@ -40,7 +42,7 @@ app.use(session({
     })
   }));
 
-  require('./passport/config')(passport);
+  require('./server/passport/config')(passport);
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -49,7 +51,7 @@ app.use(expressValidator({
         var namespace = param.split('.')
         , root    = namespace.shift()
         , formParam = root;
-  
+
       while(namespace.length) {
         formParam += '[' + namespace.shift() + ']';
       }
@@ -63,3 +65,7 @@ app.use(expressValidator({
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/', ( req, res ) => {
+  res.sendFile(path.join(__dirname, './dist/index.html'));
+});
