@@ -9,21 +9,21 @@ import {Router} from '@angular/router';
 })
 export class UnauthorizedComponent implements OnInit {
   constructor( private service: HeroService, private router: Router ) { }
-  user: any;
+  error: String = '';
   ngOnInit() {
   }
+
   onSubmit( value: any ) {
     const data = {
       'email': value.username,
       'password': value.password,
     };
-    this.user = this.service.postLogin( data );
-    setTimeout(() => {
-      if (this.service.flag) {
-        console.log(this.service.username);
+    this.service.postLogin( data ).subscribe((res) => {
+      if ( res ) {
         this.router.navigate(['campaigns']);
+      } else {
+        return this.error = 'username or password is incorrect';
       }
-    }, 600);
+    });
   }
-
 }

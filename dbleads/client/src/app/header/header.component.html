@@ -2,9 +2,9 @@
 <div class="logo">
   <img src="../../assets/images/DevolutionsCloud-Database-White-HR.png" alt="">
 </div>
-<div class="user">
-  <h3 *ngIf="!test()">Hello Guest</h3>
-  <h3 *ngIf="test()">Hello {{ user }}</h3>
-  <button *ngIf="test()">Logout</button>
+<div class="user" >
+  <h3 *ngIf="guestUser">Hello guest</h3>
+  <h3 *ngIf="authenticatedUser">Hello {{ user }}</h3>
+  <button *ngIf="button" (click)="onLogout()">Logout</button>
 </div>
 </header>

@@ -21,7 +21,7 @@ module.exports = passport => {
     (req, email, password, done) => {
         User.findOne({ 'email' :  email }, (err, user) => {
             if ( err )
-            
+
                 return done( err );
             if ( user )
                 return done( null, false );
@@ -32,7 +32,7 @@ module.exports = passport => {
             const city = req.body.city;
             const street = req.body.street;
             const companyName = req.body.companyName;
-            
+
             req.checkBody('companyName', 'company name is required').notEmpty();
             req.checkBody('street', 'Street is required').notEmpty();
             req.checkBody('city', 'City is required').notEmpty();
@@ -40,7 +40,7 @@ module.exports = passport => {
             req.checkBody('email', 'Email is not valid').isEmail();
             req.checkBody('password', 'Password is required').notEmpty();
             req.checkBody('confirmPassword', 'Passwords do not match').equals(password);
-            
+
             const errors = req.validationErrors();
             const newUser = new User();
             newUser.companyName = companyName;
@@ -50,7 +50,7 @@ module.exports = passport => {
             newUser.password = newUser.encryptPassword( req.body.password );
 
             if( errors ){ return errors };
-            
+
             newUser.save(function( err ) {
                 if ( err )
                     throw err;
@@ -65,7 +65,6 @@ module.exports = passport => {
     },
     (req, email, password, done) => {
         User.findOne({ 'email' :  email }, (err, user) => {
-            
             if (err)
                 return done(err);
             if (!user)
@@ -73,7 +72,7 @@ module.exports = passport => {
 
             if(!user.validPassword(req.body.password))
                 return done(null, false);
-            
+
             return done(null, user);
         });
     }));

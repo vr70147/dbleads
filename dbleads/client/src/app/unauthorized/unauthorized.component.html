@@ -3,6 +3,7 @@
   <h1>
     Welcome to DBleads system!
   </h1>
+  <h3>{{ error }}</h3>
   <form method="POST" #user="ngForm" (ngSubmit)="onSubmit(user.value)" >
       <input type="text" class="input-field" placeholder="Username" name="username" ngModel>
       <input type="password" class="input-field" placeholder="Password" name="password" ngModel>

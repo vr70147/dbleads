@@ -39,11 +39,13 @@ header {
   height: 60%;
   font-family: 'Exo', sans-serif;
   font-weight: bolder;
+  align-self: center;
+  margin-left: 3%;
 }
 .user button:hover {
   background-color: rgba(16, 164, 184, 0.383);
 }
-.user h3 {
+.user h3, .user h3 span  {
   color: white;
   font-size: 20px;
 }
