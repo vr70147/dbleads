@@ -9,8 +9,13 @@ import {Router} from '@angular/router';
 })
 export class UnauthorizedComponent implements OnInit {
   constructor( private service: HeroService, private router: Router ) { }
-  error: String = '';
+  userError: Boolean = true;
   ngOnInit() {
+    this.service.getSession().subscribe((res: any) => {
+      if ( res.passport ) {
+        this.router.navigate(['campaigns']);
+      }
+    });
   }
 
   onSubmit( value: any ) {
@@ -21,9 +26,9 @@ export class UnauthorizedComponent implements OnInit {
     this.service.postLogin( data ).subscribe((res) => {
       if ( res ) {
         this.router.navigate(['campaigns']);
-      } else {
-        return this.error = 'username or password is incorrect';
+        return;
       }
+       this.userError = false;
     });
   }
 }

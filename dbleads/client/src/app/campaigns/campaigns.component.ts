@@ -13,9 +13,11 @@ export class CampaignsComponent implements OnInit {
   constructor( private router: Router, private service: HeroService ) { }
 
   ngOnInit() {
-    if ( this.service.username === undefined ) {
-      this.router.navigate(['']);
-    }
+    this.service.getSession().subscribe((res: any) => {
+      if ( !res.passport ) {
+        this.router.navigate(['']);
+      }
+    });
   }
 
 }
