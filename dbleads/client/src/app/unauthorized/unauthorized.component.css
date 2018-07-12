@@ -36,11 +36,12 @@ section form {
 }
 section form h4 {
   color: lightgray;
-  margin-bottom: 0;
 }
 section form h4:nth-child(1) {
   color: red;
   margin-bottom: 0;
+  margin: 0;
+
 }
 section form h4 a {
   color: #00CAE6;

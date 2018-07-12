@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HeroService } from '../hero.service';
 import {Router} from '@angular/router';
 
@@ -10,15 +10,16 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   constructor( private service: HeroService, private router: Router ) {}
-  user: any;
+  @Input() user: string;
+  @Input() button: Boolean = false;
   guestUser: Boolean = true;
   authenticatedUser: Boolean = false;
-  button: Boolean = false;
+
 
   ngOnInit() {
     this.service.getSession().subscribe(( res: any ) => {
       if ( res.passport ) {
-        this.user = res.passport.user.companyName;
+        this.user = 'Hello ' + res.passport.user.companyName;
         this.authenticatedUser = true;
         this.guestUser = false;
         this.button = true;
@@ -27,7 +28,8 @@ export class HeaderComponent implements OnInit {
   }
   onLogout() {
     this.service.logout().subscribe((res) => {
-      console.log(res);
+      this.user = 'Hello guest';
+      this.button = false;
       this.router.navigate(['']);
     });
   }

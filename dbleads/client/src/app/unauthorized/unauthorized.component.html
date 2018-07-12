@@ -4,7 +4,7 @@
     Welcome to DBleads system!
   </h1>
   <form method="POST" #user="ngForm" (ngSubmit)="onSubmit(user.value)" >
-      <h4 *ngIf="!userError">Username or password is incorrect</h4>
+      <h4 *ngIf="userError">Username or password is incorrect</h4>
       <input type="text" class="input-field" placeholder="Username" name="username" ngModel>
       <input type="password" class="input-field" placeholder="Password" name="password" ngModel>
       <button type="submit" class="form-button">Log in</button>

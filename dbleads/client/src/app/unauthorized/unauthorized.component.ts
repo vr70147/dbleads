@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HeroService } from '../hero.service';
 import {Router} from '@angular/router';
 
@@ -8,8 +8,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./unauthorized.component.css']
 })
 export class UnauthorizedComponent implements OnInit {
+
   constructor( private service: HeroService, private router: Router ) { }
-  userError: Boolean = true;
+  userError: Boolean = false;
+  username: any;
+  button: Boolean;
   ngOnInit() {
     this.service.getSession().subscribe((res: any) => {
       if ( res.passport ) {
@@ -23,12 +26,15 @@ export class UnauthorizedComponent implements OnInit {
       'email': value.username,
       'password': value.password,
     };
-    this.service.postLogin( data ).subscribe((res) => {
+    this.service.postLogin( data ).subscribe((res: any) => {
       if ( res ) {
+        this.username = res[0].user;
+        this.button = true;
         this.router.navigate(['campaigns']);
         return;
       }
-       this.userError = false;
+    }, error => {
+      this.userError = true;
     });
   }
 }
