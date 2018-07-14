@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HeroService } from '../hero.service';
 import {Router} from '@angular/router';
-
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'app-header',
@@ -10,26 +10,32 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   constructor( private service: HeroService, private router: Router ) {}
-  @Input() user: string;
-  @Input() button: Boolean = false;
+  user: string;
+  button: Boolean = true;
   guestUser: Boolean = true;
   authenticatedUser: Boolean = false;
 
-
   ngOnInit() {
-    this.service.getSession().subscribe(( res: any ) => {
-      if ( res.passport ) {
-        this.user = 'Hello ' + res.passport.user.companyName;
-        this.authenticatedUser = true;
-        this.guestUser = false;
-        this.button = true;
+    this.service.showUser.subscribe((res: any) => {
+      this.service.getSession().subscribe(( sessionUser: any ) => {
+        if ( sessionUser.passport ) {
+          this.button = true;
+          return this.user = sessionUser.passport.user.companyName;
+        }
+        this.router.navigate(['']);
+
+      });
+      if ( res ) {
+      return this.user = res;
       }
+      this.button = false;
+      this.user = 'guest';
     });
   }
   onLogout() {
     this.service.logout().subscribe((res) => {
-      this.user = 'Hello guest';
       this.button = false;
+      this.user = 'guest';
       this.router.navigate(['']);
     });
   }

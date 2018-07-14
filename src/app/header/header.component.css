@@ -5,6 +5,10 @@ header {
   flex-direction: row;
   height: 80px;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
 }
 .logo {
   display: inline-flex;

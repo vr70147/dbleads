@@ -47,19 +47,20 @@ const addCampaign = (req, res, next ) => {
             res.json( campaigns );
             return next();
         });
-    }); 
+    });
 };
 
 const getUserCampaign = ( req, res, next ) => {
     if(req.session.passport) {
-        const userId = req.session.passport.user._id;
+      const userId = req.session.passport.user._id;
 	    Campaigns.find({ userId: userId }, ( err, campaign ) => {
+        console.log(campaign);
             if (err){ return console.log(err)};
-            res.status(200).json(campaign);
+            res.json(campaign);
         });
         return next();
     }
-    
+
 };
 
 

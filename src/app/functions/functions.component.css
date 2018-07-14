@@ -1,12 +1,15 @@
 section {
   background-color: #393F54;
   height: 100%;
-  width: 100%;
+  width: 15%;
   margin-top: 5px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  position: fixed;
+  left:0;
+  top: 9%;
 
 }
 .btn {

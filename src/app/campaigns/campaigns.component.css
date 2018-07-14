@@ -7,6 +7,7 @@ section {
   flex-wrap: wrap;
   margin-left: 5px;
   background-color: #EBEDF3;
+  overflow-x: scroll;
 }
 .campaign_div {
   width: 20%;

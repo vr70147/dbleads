@@ -18,6 +18,10 @@ export class CampaignsComponent implements OnInit {
         this.router.navigate(['']);
       }
     });
+    // this.service.getCampaign().subscribe(( res: any ) => {
+    //   console.log(res);
+    // });
   }
+
 
 }
