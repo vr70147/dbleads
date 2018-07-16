@@ -34,11 +34,10 @@ const postLeads = ( req, res, next ) => {
 }
 const addCampaign = (req, res, next ) => {
     const campaigns = new Campaigns({
-        "userName" : req.session.passport.user.companyName,
+        "userId" : req.session.passport.user._id,
         "campaignName": req.body.campaignName
     });
     Campaigns.findOne({ campaignName: req.body.campaignName }, ( err, existingName ) => {
-        console.log(existingName);
         if( existingName ) {
             return res.send("this campaign name is already exist");
         }
@@ -51,16 +50,13 @@ const addCampaign = (req, res, next ) => {
 };
 
 const getUserCampaign = ( req, res, next ) => {
-    if(req.session.passport) {
-      const userId = req.session.passport.user._id;
-	    Campaigns.find({ userId: userId }, ( err, campaign ) => {
-        console.log(campaign);
-            if (err){ return console.log(err)};
+    if (req.session.passport) {
+        const userId = req.session.passport.user._id;
+        Campaigns.find({ userId: userId }, ( err, campaign ) => {
+            if (err){ throw err };
             res.json(campaign);
         });
-        return next();
     }
-
 };
 
 

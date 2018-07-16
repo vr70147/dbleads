@@ -1,14 +1,9 @@
-<section>
-<div class="campaign_div">
-
-</div>
-<div class="campaign_div">
-
+<section >
+   <app-popup *ngIf="createCampaign"></app-popup>
+  <div class="campaign_cont" >
+      <div class="campaign_div" *ngFor="let campaign of campaigns">
+          {{ campaign.campaignName }}
+        </div>
   </div>
-  <div class="campaign_div">
-
-    </div>
-    <div class="campaign_div">
-
-      </div>
+  
 </section>

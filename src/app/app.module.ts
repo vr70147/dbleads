@@ -12,6 +12,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { RegisterComponent } from './register/register.component';
 import { HeroService } from './hero.service';
 import { MatDialogModule } from '@angular/material';
+import { PopupComponent } from './popup/popup.component';
 
 
 const appRoutes: Routes = [
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     CampaignsComponent,
     LeadsComponent,
     UnauthorizedComponent,
-    RegisterComponent
+    RegisterComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

@@ -2,9 +2,6 @@ section {
   display: flex;
   width: 100%;
   height: 100%;
-  flex-direction: row;
-  align-self: flex-end;
-  flex-wrap: wrap;
   margin-left: 5px;
   background-color: #EBEDF3;
   overflow-x: scroll;
@@ -22,3 +19,21 @@ section {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.050), 0 6px 20px 0 rgba(0, 0, 0, 0.050);
   background-color: rgb(255, 255, 255, 0.8);
 }
+.campaign_cont {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  align-self: flex-end;
+  flex-wrap: wrap;
+}
+app-popup {
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.267);
+}
+
+

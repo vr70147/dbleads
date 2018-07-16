@@ -5,7 +5,8 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 @Injectable()
 export class HeroService {
   sessionUrl = 'http://localhost:3000/users/session';
-  campaignUrl = 'http://localhost:3000/getcampaign';
+  getCampaignUrl = 'http://localhost:3000/getcampaign';
+  postCampaignUrl = 'http://localhost:3000/addcampaign';
   loginUrl = 'http://localhost:3000/users/login';
   logoutUrl = 'http://localhost:3000/users/logout';
   private user = new BehaviorSubject<string>('');
@@ -23,7 +24,10 @@ export class HeroService {
 
 
   getCampaign() {
-    return this.http.get(this.campaignUrl);
+    return this.http.get(this.getCampaignUrl);
+  }
+  postCampign( campName ) {
+    return this.http.put(this.postCampaignUrl, campName );
   }
 
   postLogin( arg: object ) {
