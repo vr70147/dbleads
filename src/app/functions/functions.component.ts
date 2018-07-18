@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-functions',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./functions.component.css']
 })
 export class FunctionsComponent implements OnInit {
-
-  constructor() { }
+  openPopup: Boolean = true;
+  constructor( private service: HeroService ) { }
 
   ngOnInit() {
+    this.service.openPopup( false );
+  }
+  openCreateCampaignDialog() {
+    this.service.openPopup( this.openPopup );
+
   }
 
 }

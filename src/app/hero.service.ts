@@ -9,9 +9,14 @@ export class HeroService {
   postCampaignUrl = 'http://localhost:3000/addcampaign';
   loginUrl = 'http://localhost:3000/users/login';
   logoutUrl = 'http://localhost:3000/users/logout';
+  private boolean = new BehaviorSubject<any>(true);
+  showBoolean = this.boolean.asObservable();
   private user = new BehaviorSubject<string>('');
   showUser = this.user.asObservable();
   constructor( private http: HttpClient ) {
+  }
+  openPopup( bool ) {
+    this.boolean.next( bool );
   }
 
   editUser( newUser ) {
@@ -19,15 +24,15 @@ export class HeroService {
   }
 
   getSession() {
-    return this.http.get(this.sessionUrl);
+    return this.http.get( this.sessionUrl );
   }
 
 
   getCampaign() {
-    return this.http.get(this.getCampaignUrl);
+    return this.http.get( this.getCampaignUrl );
   }
   postCampign( campName ) {
-    return this.http.put(this.postCampaignUrl, campName );
+    return this.http.put( this.postCampaignUrl, campName );
   }
 
   postLogin( arg: object ) {
@@ -41,6 +46,6 @@ export class HeroService {
   }
 
   logout() {
-    return this.http.get(this.logoutUrl);
+    return this.http.get( this.logoutUrl );
   }
 }

@@ -2,8 +2,14 @@
    <app-popup *ngIf="createCampaign"></app-popup>
   <div class="campaign_cont" >
       <div class="campaign_div" *ngFor="let campaign of campaigns">
-          {{ campaign.campaignName }}
+        <h3>{{ campaign.campaignName }}</h3>
+        <h4>Number of leads: 0</h4>
+        <button>Enter campaign</button>
+        <hr>
+        <div>
+            <button>Change name</button>
+            <button>Delete</button>
         </div>
+      </div>
   </div>
-  
 </section>

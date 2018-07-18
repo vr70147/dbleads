@@ -25,6 +25,7 @@ export class PopupComponent implements OnInit {
       campaignName: this.campaignName
     };
     this.service.postCampign( this.userObj ).subscribe(( res ) => {
+      this.service.openPopup(false);
       console.log(res);
     });
   }

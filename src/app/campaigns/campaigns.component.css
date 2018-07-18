@@ -8,12 +8,80 @@ section {
 }
 .campaign_div {
   width: 20%;
-  height: 300px;
+  height: 29%;
   display: inline-flex;
   align-self: flex-start;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   margin: 2.5%;
+  margin-bottom: 1%;
+  flex-direction: column;
+  border-radius: 5px;
+}
+.campaign_div div {
+  flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    width: 90%;
+    align-self: center;
+}
+.campaign_div div button {
+  width: 47%;
+  height: 30px;
+  align-self: center;
+  font-size: 14px;
+  line-height: 20px;
+  background-color: gray;
+  border-radius: 5px;
+  margin: 0;
+  
+}
+.campaign_div h3 {
+  font-weight: 100;
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 3%;
+  border-bottom: 1px solid lightgray;
+  height: 17%;
+}
+.campaign_div h4 {
+  width: 90%;
+  align-self: center;
+}
+.campaign_div button {
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 50px;
+  width: 90%;
+  background-color: #00CAE6;
+  border: none;
+  margin-top: 3%;
+  font-size: 20px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 200;
+  padding: 2%;
+  box-sizing: border-box;
+  color: white;
+  border-radius: 5px;
+
+}
+.campaign_div button:nth-child(2n) {
+  background-color: #D63D34;
+  color: white;
+}
+.campaign_div button:hover {
+  background-color: #5BC0DE;
+}
+.campaign_div div button:hover {
+  background-color: #333333;
+}
+.campaign_div div button:hover:nth-child(2n) {
+  background-color: #C33B34;
 }
 .campaign_div:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.050), 0 6px 20px 0 rgba(0, 0, 0, 0.050);
@@ -22,10 +90,10 @@ section {
 .campaign_cont {
   width: 100%;
   height: 100%;
-  display: inline-flex;
+  /* display: inline-flex;
   flex-direction: row;
   align-self: flex-end;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 }
 app-popup {
   position: absolute;
@@ -34,6 +102,13 @@ app-popup {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.267);
+}
+hr {
+  width: 90%;
+  background-color: whitesmoke;
+  margin: 6% 0 6% 0;
+  display: inline-flex;
+  align-self: center;
 }
 
 

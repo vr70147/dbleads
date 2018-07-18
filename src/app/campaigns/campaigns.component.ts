@@ -21,6 +21,9 @@ export class CampaignsComponent implements OnInit {
         this.router.navigate(['']);
       }
     });
+    this.service.showBoolean.subscribe((res: any) => {
+     this.createCampaign = res;
+    });
     // this.service.getCampaign().subscribe(( res: any ) => {
     //   console.log(res);
     // });
