@@ -1,3 +1,29 @@
-<p>
-  {{ leads }}
-</p>
+<section>
+    <h1>Campaign of {{ title }}</h1>
+    <h3 *ngIf="!loading">Loading...</h3>
+    <table *ngIf="flag">
+        <tr>
+            <th *ngIf="leads[0].fname">First name</th>
+            <th *ngIf="leads[0].lname">Last name</th>
+            <th *ngIf="leads[0].fullname">Full name</th>
+            <th *ngIf="leads[0].email">Email</th>
+            <th *ngIf="leads[0].phone">Phone</th>
+            <th *ngIf="leads[0].city">City</th>
+            <th *ngIf="leads[0].street">Street</th>
+            <th *ngIf="leads[0].street_num">Street number</th>
+            <th *ngIf="leads[0].address">Address</th>
+        </tr>
+        <tr *ngFor="let lead of leads">
+          <td *ngIf="lead.fname">{{ lead.lname }}</td>
+          <td *ngIf="lead.lname">{{ lead.lname }}</td>
+          <td *ngIf="lead.fullname">{{ lead.fullname }}</td>
+          <td *ngIf="lead.email">{{ lead.email }}</td>
+          <td *ngIf="lead.phone">{{ lead.phone }}</td>
+          <td *ngIf="lead.city">{{ lead.city }}</td>
+          <td *ngIf="lead.street">{{ lead.street }}</td>
+          <td *ngIf="lead.street_num">{{ lead.street_num }}</td>
+          <td *ngIf="lead.address">{{ lead.address }}</td>
+      </tr>
+    </table>
+</section>
+

@@ -5,10 +5,10 @@ const Campaigns = require('../models/campaign');
 
 
 const getLeads = ( req, res, next ) => {
-    Leads.find({}, ( err, leads ) => {
-        if(err) return err;
+    const id = req.params.id;
+    Leads.find({ campaign: id }, ( err, leads ) => {
+        if( err ) return err;
         res.json( leads );
-        return next();
     });
 };
 
@@ -29,7 +29,6 @@ const postLeads = ( req, res, next ) => {
     leads.save(( err, data ) => {
         if(err) return err;
         res.json( data );
-        return next();
     });
 }
 const addCampaign = (req, res, next ) => {
@@ -49,22 +48,31 @@ const addCampaign = (req, res, next ) => {
     });
 };
 
-const getUserCampaign = ( req, res, next ) => {
+const getUserCampaign = ( req, res ) => {
     if (req.session.passport) {
         const userId = req.session.passport.user._id;
         Campaigns.find({ userId: userId }, ( err, campaign ) => {
-            if (err){ throw err };
-            res.json(campaign);
+            if ( err ){ throw err };
+            res.json( campaign );
         });
     }
 };
+const getOneCampaign = ( req, res ) => {
+    const id = req.params.id;
+    Campaigns.findOne({ _id: id }), ( err, campaign ) => {
+        console.log("hey");
+        if ( err ){ throw err };
+        res.json( campaign );
+    };
+}
 
 
 const MiddleWares = {
     getLeads,
     postLeads,
     addCampaign,
-    getUserCampaign
+    getUserCampaign,
+    getOneCampaign
 };
 
 module.exports = MiddleWares;

@@ -5,7 +5,9 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 @Injectable()
 export class HeroService {
   sessionUrl = 'http://localhost:3000/users/session';
-  getCampaignUrl = 'http://localhost:3000/getcampaign';
+  getCampaignUrl = 'http://localhost:3000/getallcampaigns';
+  getOneCampaignUrl = 'http://localhost:3000/getonecampaign';
+  getLeadsUrl = 'http://localhost:3000/getleads';
   postCampaignUrl = 'http://localhost:3000/addcampaign';
   loginUrl = 'http://localhost:3000/users/login';
   logoutUrl = 'http://localhost:3000/users/logout';
@@ -33,9 +35,15 @@ export class HeroService {
   getSession() {
     return this.http.get( this.sessionUrl );
   }
+  getLeads( id ) {
+    return this.http.get( this.getLeadsUrl + '/' + id );
+  }
 
   getCampaign() {
     return this.http.get( this.getCampaignUrl );
+  }
+  getOneCampaign( id ) {
+    return this.http.get( this.getOneCampaignUrl + '/' + id );
   }
   postCampign( campName ) {
     return this.http.put( this.postCampaignUrl, campName );
