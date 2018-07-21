@@ -1,6 +1,9 @@
 <section>
-    <h1>Campaign of {{ title }}</h1>
-    <h3 *ngIf="!loading">Loading...</h3>
+  <div class="title">
+      <button class="back" (click)="back()">Back</button>
+      <h1 *ngIf="flag">Campaign of {{ title }}</h1>
+      <h3 *ngIf="!loading">Loading...</h3>
+  </div>
     <table *ngIf="flag">
         <tr>
             <th *ngIf="leads[0].fname">First name</th>

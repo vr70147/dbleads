@@ -43,6 +43,7 @@ export class HeroService {
     return this.http.get( this.getCampaignUrl );
   }
   getOneCampaign( id ) {
+    console.log(this.getOneCampaignUrl + '/' + id );
     return this.http.get( this.getOneCampaignUrl + '/' + id );
   }
   postCampign( campName ) {

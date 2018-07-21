@@ -8,10 +8,34 @@ section {
     height: 100%;
     width: 100%;
     align-self: flex-end;
-    flex-wrap: wrap;
     margin-left: 5px;
+    padding-top: 3%;
+}
+.back {
+    background-color: #393F54;
+    width: 100px;
+    height: 50px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+.title {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 80%;
+    align-self: center;
+    margin-top: 3%;
+}
+h1, .title h3 {
+    display: inline-flex;
+    align-self: center;
+    margin: 0 auto;
+    vertical-align: baseline;
 }
 table {
+    align-self: center;
     margin: 0 auto;
     margin-top: 3%;
     width: 80%;

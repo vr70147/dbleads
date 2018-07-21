@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../hero.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-leads',
@@ -12,24 +13,20 @@ export class LeadsComponent implements OnInit {
   flag: Boolean = false;
   loading: Boolean = false;
   title: String;
-  constructor( private service: HeroService ) { }
+  constructor( private service: HeroService, private router: Router ) { }
 
   async ngOnInit() {
     this.id = window.location.pathname.split( '/' )[2];
     await this.service.getLeads( this.id ).subscribe(( response: any ) => {
       this.leads = response;
+      this.service.getOneCampaign( this.id ).subscribe(( res: any ) => {
+        this.title = res;
+      });
       this.loading = true;
       this.flag = true;
-    },
-    error => {
-      console.log(error);
     });
-    await this.service.getOneCampaign( this.id ).subscribe(( res: any ) => {
-      this.title = res.campaignName;
-      console.log(res);
-    },
-    error => {
-      console.log(error);
-    });
+  }
+  back() {
+    this.router.navigate( ['campaigns'] );
   }
 }

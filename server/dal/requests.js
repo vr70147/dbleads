@@ -3,7 +3,6 @@ const Leads = require('../models/leads');
 const User = require('../models/user');
 const Campaigns = require('../models/campaign');
 
-
 const getLeads = ( req, res, next ) => {
     const id = req.params.id;
     Leads.find({ campaign: id }, ( err, leads ) => {
@@ -48,22 +47,17 @@ const addCampaign = (req, res, next ) => {
     });
 };
 
-const getUserCampaign = ( req, res ) => {
+const getUserCampaign = async ( req, res ) => {
     if (req.session.passport) {
         const userId = req.session.passport.user._id;
-        Campaigns.find({ userId: userId }, ( err, campaign ) => {
-            if ( err ){ throw err };
-            res.json( campaign );
-        });
+        let campaign = await Campaigns.find({ userId: userId });
+        res.json( campaign );
     }
 };
-const getOneCampaign = ( req, res ) => {
+const getOneCampaign = async ( req, res ) => {
     const id = req.params.id;
-    Campaigns.findOne({ _id: id }), ( err, campaign ) => {
-        console.log("hey");
-        if ( err ){ throw err };
-        res.json( campaign );
-    };
+    let campaignID = await Campaigns.findOne({_id: id})
+    res.json( campaignID.campaignName )
 }
 
 
