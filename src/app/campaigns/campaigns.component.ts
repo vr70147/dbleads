@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -10,25 +10,28 @@ import { HeroService } from '../hero.service';
 export class CampaignsComponent implements OnInit {
   campaignName: String;
   userObj: Object;
-  userId: any;
-  campaigns: any;
+  userId: String;
+  campaigns: Object;
+  campaignId: String;
   createCampaign: Boolean;
   constructor( private router: Router, private service: HeroService ) { }
 
   ngOnInit() {
-    this.service.getSession().subscribe((res: any) => {
+    this.service.getSession().subscribe(( res: any ) => {
       if ( !res.passport ) {
-        this.router.navigate(['']);
+        this.router.navigate( [''] );
       }
     });
-    this.service.showBoolean.subscribe((res: any) => {
-     this.createCampaign = res;
-    });
-    // this.service.getCampaign().subscribe(( res: any ) => {
-    //   console.log(res);
-    // });
-    this.service.getCampaign().subscribe((res: any) => {
+    this.service.getCampaign().subscribe(( res: object ) => {
       this.campaigns = res;
     });
+    this.service.showBoolean.subscribe(( res: boolean ) => {
+      this.createCampaign = res;
+    });
+  }
+  viewCampaign( id ) {
+    this.campaignId = id;
+    this.service.getClickedCampaignId( this.campaignId );
+    this.router.navigate( ['campaigns/' + id + '/leads'] );
   }
 }

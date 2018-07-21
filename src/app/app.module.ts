@@ -11,7 +11,6 @@ import { LeadsComponent } from './leads/leads.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { RegisterComponent } from './register/register.component';
 import { HeroService } from './hero.service';
-import { MatDialogModule } from '@angular/material';
 import { PopupComponent } from './popup/popup.component';
 
 
@@ -49,10 +48,9 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
-    MatDialogModule
+    RouterModule.forRoot( appRoutes ),
   ],
-  providers: [HeroService],
-  bootstrap: [AppComponent]
+  providers: [ HeroService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

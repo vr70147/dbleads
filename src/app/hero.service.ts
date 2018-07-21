@@ -13,6 +13,10 @@ export class HeroService {
   showBoolean = this.boolean.asObservable();
   private user = new BehaviorSubject<string>('');
   showUser = this.user.asObservable();
+  private campaignId = new BehaviorSubject<string>('');
+  onCampaignId = this.campaignId.asObservable();
+
+
   constructor( private http: HttpClient ) {
   }
   openPopup( bool ) {
@@ -22,11 +26,13 @@ export class HeroService {
   editUser( newUser ) {
     this.user.next( newUser );
   }
+  getClickedCampaignId( id ) {
+    this.campaignId.next( id );
+  }
 
   getSession() {
     return this.http.get( this.sessionUrl );
   }
-
 
   getCampaign() {
     return this.http.get( this.getCampaignUrl );
@@ -36,12 +42,6 @@ export class HeroService {
   }
 
   postLogin( arg: object ) {
-    // const httpHeaders = new HttpHeaders({
-    //   'Content-Type' : 'application/json'
-    // });
-    // const options = {
-    //   headers: httpHeaders
-    // };
     return this.http.post( this.loginUrl, arg );
   }
 

@@ -20,13 +20,12 @@ export class PopupComponent implements OnInit {
 
   ngOnInit() {
   }
-  sendCampaign() {
+  async sendCampaign() {
     this.userObj = {
       campaignName: this.campaignName
     };
-    this.service.postCampign( this.userObj ).subscribe(( res ) => {
+    await this.service.postCampign( this.userObj ).subscribe(( res: any ) => {
       this.service.openPopup(false);
-      console.log(res);
     });
   }
 }

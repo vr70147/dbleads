@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-leads',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leads.component.css']
 })
 export class LeadsComponent implements OnInit {
-
-  constructor() { }
+  leads: any;
+  constructor( private service: HeroService ) { }
 
   ngOnInit() {
+    this.service.onCampaignId.subscribe(( res: any ) => {
+      console.log(res);
+      this.leads = res;
+    });
   }
-
 }

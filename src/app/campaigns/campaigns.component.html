@@ -4,7 +4,7 @@
       <div class="campaign_div" *ngFor="let campaign of campaigns">
         <h3>{{ campaign.campaignName }}</h3>
         <h4>Number of leads: 0</h4>
-        <button>Enter campaign</button>
+        <button (click)="viewCampaign(campaign._id)">View campaign</button>
         <hr>
         <div>
             <button>Change name</button>
