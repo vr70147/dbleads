@@ -16,22 +16,22 @@ export class CampaignsComponent implements OnInit {
   createCampaign: Boolean;
   constructor( private router: Router, private service: HeroService ) { }
 
-  ngOnInit() {
-    this.service.getSession().subscribe(( res: any ) => {
+  async ngOnInit() {
+    await this.service.getSession().subscribe(( res: any ) => {
       if ( !res.passport ) {
         this.router.navigate( [''] );
       }
     });
-    this.service.getCampaign().subscribe(( res: object ) => {
+    await this.service.getCampaign().subscribe(( res: object ) => {
       this.campaigns = res;
     });
     this.service.showBoolean.subscribe(( res: boolean ) => {
       this.createCampaign = res;
     });
   }
-  viewCampaign( id ) {
+  async viewCampaign( id ) {
     this.campaignId = id;
-    this.service.getClickedCampaignId( this.campaignId );
-    this.router.navigate( ['campaigns/' + id + '/leads'] );
+    await this.service.getClickedCampaignId( this.campaignId );
+    await this.router.navigate( ['campaigns/' + id + '/leads'] );
   }
 }

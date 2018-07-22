@@ -54,19 +54,27 @@ const getUserCampaign = async ( req, res ) => {
         res.json( campaign );
     }
 };
+
+const countLeads = async ( req, res ) => {
+    let arr = [];
+    let arrOfName = await Leads.find({ });
+    arr = arrOfName.length;
+    res.json(arr);
+    // let getLeads = await Leads.find({});
+    // res.json(getLeads);
+}
 const getOneCampaign = async ( req, res ) => {
     const id = req.params.id;
     let campaignID = await Campaigns.findOne({_id: id})
     res.json( campaignID.campaignName )
 }
-
-
 const MiddleWares = {
     getLeads,
     postLeads,
     addCampaign,
     getUserCampaign,
-    getOneCampaign
+    getOneCampaign,
+    countLeads
 };
 
 module.exports = MiddleWares;

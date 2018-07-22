@@ -17,19 +17,16 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.service.showUser.subscribe((res: any) => {
-      this.service.getSession().subscribe(( sessionUser: any ) => {
-        if ( sessionUser.passport ) {
-          this.button = true;
-          return this.user = sessionUser.passport.user.companyName;
-        }
-        this.router.navigate(['']);
-
-      });
-      if ( res ) {
-      return this.user = res;
+      if ( res ) { this.user = res; }
+    });
+    this.service.getSession().subscribe(( sessionUser: any ) => {
+      if ( sessionUser.passport ) {
+        this.button = true;
+        return this.user = sessionUser.passport.user.companyName;
       }
       this.button = false;
       this.user = 'guest';
+      this.router.navigate(['']);
     });
   }
   onLogout() {

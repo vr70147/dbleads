@@ -15,7 +15,6 @@ export class FunctionsComponent implements OnInit {
   }
   openCreateCampaignDialog() {
     this.service.openPopup( this.openPopup );
-
   }
 
 }
