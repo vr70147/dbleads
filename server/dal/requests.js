@@ -2,6 +2,7 @@ const express = require('express');
 const Leads = require('../models/leads');
 const User = require('../models/user');
 const Campaigns = require('../models/campaign');
+const mongoose = require('mongoose');
 
 const getLeads = ( req, res, next ) => {
     const id = req.params.id;
@@ -11,9 +12,27 @@ const getLeads = ( req, res, next ) => {
     });
 };
 
+const addCampaign = (req, res, next ) => {
+    const campaigns = new Campaigns({
+        _id: new mongoose.Types.ObjectId(),
+        userId : req.session.passport.user._id,
+        campaignName: req.body.campaignName
+    });
+    Campaigns.findOne({ campaignName: req.body.campaignName }, ( err, existingName ) => {
+        if( existingName ) {
+            return res.send("this campaign name is already exist");
+        }
+        campaigns.save(( err, campaigns ) => {
+            if(err) return err;
+            res.json( campaigns );
+            return next();
+        });
+    });
+};
 const postLeads = ( req, res, next ) => {
+    const id = req.params.id;
     const leads = new Leads({
-        campaign: campaign._id,
+        campaign: id,
         fname: req.body.fname,
         lname: req.body.lname,
         fullname: req.body.fullname,
@@ -29,32 +48,12 @@ const postLeads = ( req, res, next ) => {
         res.json( data );
     });
 }
-const addCampaign = (req, res, next ) => {
-    const campaigns = new Campaigns({
-        "_id": new mongoose.Tsypes.ObjectId(),
-        "userId" : req.session.passport.user._id,
-        "campaignName": req.body.campaignName
-    });
-    Campaigns.findOne({ campaignName: req.body.campaignName }, ( err, existingName ) => {
-        if( existingName ) {
-            return res.send("this campaign name is already exist");
-        }
-        campaigns.save(( err, campaigns ) => {
-            if(err) return err;
-            res.json( campaigns );
-            return next();
-        });
-    });
-};
 
-const getUserCampaign = ( req, res ) => {
+const getUserCampaign = async ( req, res ) => {
     if ( req.session.passport ) {
         const userId = req.session.passport.user._id;
-        Campaigns.find({ userId: userId }).populate('lead').exec((err, data) => {
-            res.json( data );
-            console.log( data );
-        });
-            
+        let campaign = await Campaigns.find({ userId: userId });
+            res.json( campaign );
     }
 };
 
