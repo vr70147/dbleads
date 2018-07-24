@@ -11,6 +11,7 @@ export class HeroService {
   postCampaignUrl = 'http://localhost:3000/addcampaign';
   loginUrl = 'http://localhost:3000/users/login';
   logoutUrl = 'http://localhost:3000/users/logout';
+  deleteCampUrl = 'http://localhost:3000/deletecampaign';
   private boolean = new BehaviorSubject<any>(true);
   showBoolean = this.boolean.asObservable();
   private user = new BehaviorSubject<string>('');
@@ -43,8 +44,11 @@ export class HeroService {
     return this.http.get( this.getCampaignUrl );
   }
   getOneCampaign( id ) {
-    console.log(this.getOneCampaignUrl + '/' + id );
     return this.http.get( this.getOneCampaignUrl + '/' + id );
+  }
+  deleteCamp( id ) {
+    console.log(this.deleteCampUrl);
+    return this.http.delete( this.deleteCampUrl + '/' + id );
   }
   postCampign( campName ) {
     return this.http.put( this.postCampaignUrl, campName );

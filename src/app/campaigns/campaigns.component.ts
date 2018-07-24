@@ -34,4 +34,9 @@ export class CampaignsComponent implements OnInit {
     await this.service.getClickedCampaignId( this.campaignId );
     await this.router.navigate( ['campaigns/' + id + '/leads'] );
   }
+  async deleteCampaign( id ) {
+    await this.service.deleteCamp( id );
+    await this.router.navigate(['campaigns']);
+  }
 }
+

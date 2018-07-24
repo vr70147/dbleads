@@ -48,16 +48,18 @@ const addCampaign = (req, res, next ) => {
 };
 
 const getUserCampaign = async ( req, res ) => {
-    if (req.session.passport) {
+    if ( req.session.passport ) {
         const userId = req.session.passport.user._id;
         let campaign = await Campaigns.find({ userId: userId });
-        res.json( campaign );
+            res.json( campaign );
+            console.log( campaign );
     }
 };
 
 const countLeads = async ( req, res ) => {
     let arr = [];
-    let arrOfName = await Leads.find({ });
+
+    let arrOfNames = await Leads.find({ });
     arr = arrOfName.length;
     res.json(arr);
     // let getLeads = await Leads.find({});
@@ -65,16 +67,25 @@ const countLeads = async ( req, res ) => {
 }
 const getOneCampaign = async ( req, res ) => {
     const id = req.params.id;
-    let campaignID = await Campaigns.findOne({_id: id})
-    res.json( campaignID.campaignName )
+    let campaignID = await Campaigns.findOne({_id: id});
+    res.json( campaignID.campaignName );
 }
+
+const deleteCampaign = async ( req, res ) => {
+    console.log("ok");
+    const id = req.params.id;
+    Campaigns.remove({ _id: id }),( err, deleted ) => {
+        console.log('Campaign has deleted successfuly');
+    };
+};
 const MiddleWares = {
     getLeads,
     postLeads,
     addCampaign,
     getUserCampaign,
     getOneCampaign,
-    countLeads
+    countLeads,
+    deleteCampaign
 };
 
 module.exports = MiddleWares;
