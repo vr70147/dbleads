@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const leadSchema = new Schema({
-    campaign: { type: String, required: true },
-    campaigns: { type: Schema.Types.ObjectId, ref: 'campaigns' },
+    campaign: { type: Schema.Types.ObjectId, ref: 'campaigns' },
     fname: String,
     lname: String,
     fullname: String,

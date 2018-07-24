@@ -12,8 +12,8 @@ const getLeads = ( req, res, next ) => {
 };
 
 const postLeads = ( req, res, next ) => {
-    const campaignId = req.params.id;
     const leads = new Leads({
+        campaign: campaign._id,
         fname: req.body.fname,
         lname: req.body.lname,
         fullname: req.body.fullname,
@@ -23,7 +23,6 @@ const postLeads = ( req, res, next ) => {
         street: req.body.street,
         street_num: req.body.street_num,
         address: req.body.address,
-        campaign: campaignId
     });
     leads.save(( err, data ) => {
         if(err) return err;
@@ -32,6 +31,7 @@ const postLeads = ( req, res, next ) => {
 }
 const addCampaign = (req, res, next ) => {
     const campaigns = new Campaigns({
+        "_id": new mongoose.Tsypes.ObjectId(),
         "userId" : req.session.passport.user._id,
         "campaignName": req.body.campaignName
     });
@@ -47,12 +47,14 @@ const addCampaign = (req, res, next ) => {
     });
 };
 
-const getUserCampaign = async ( req, res ) => {
+const getUserCampaign = ( req, res ) => {
     if ( req.session.passport ) {
         const userId = req.session.passport.user._id;
-        let campaign = await Campaigns.find({ userId: userId });
-            res.json( campaign );
-            console.log( campaign );
+        Campaigns.find({ userId: userId }).populate('lead').exec((err, data) => {
+            res.json( data );
+            console.log( data );
+        });
+            
     }
 };
 
