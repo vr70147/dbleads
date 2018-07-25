@@ -47,7 +47,6 @@ export class HeroService {
     return this.http.get( this.getOneCampaignUrl + '/' + id );
   }
   deleteCamp( id ) {
-    console.log(this.deleteCampUrl);
     return this.http.delete( this.deleteCampUrl + '/' + id );
   }
   postCampign( campName ) {

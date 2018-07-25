@@ -58,25 +58,17 @@ const getUserCampaign = async ( req, res ) => {
     }
 };
 
-const countLeads = async ( req, res ) => {
-    let arr = [];
-
-    let arrOfNames = await Leads.find({ });
-    arr = arrOfName.length;
-    res.json(arr);
-    // let getLeads = await Leads.find({});
-    // res.json(getLeads);
-}
 const getOneCampaign = async ( req, res ) => {
     const id = req.params.id;
     let campaignID = await Campaigns.findOne({_id: id});
     res.json( campaignID.campaignName );
 }
 
-const deleteCampaign = async ( req, res ) => {
+const deleteCampaign = ( req, res ) => {
     console.log("ok");
     const id = req.params.id;
     Campaigns.remove({ _id: id }),( err, deleted ) => {
+        if( err ) throw err;
         console.log('Campaign has deleted successfuly');
     };
 };
@@ -86,7 +78,6 @@ const MiddleWares = {
     addCampaign,
     getUserCampaign,
     getOneCampaign,
-    countLeads,
     deleteCampaign
 };
 
