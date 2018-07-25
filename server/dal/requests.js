@@ -29,7 +29,7 @@ const addCampaign = (req, res, next ) => {
         });
     });
 };
-const postLeads = ( req, res, next ) => {
+const postLeads = ( req, res, done ) => {
     const id = req.params.id;
     const leads = new Leads({
         campaign: id,
@@ -44,6 +44,7 @@ const postLeads = ( req, res, next ) => {
         address: req.body.address,
     });
     leads.save(( err, data ) => {
+        Campaigns.update({ _id: data.campaign }, { $push: { lead: data }}, done );
         if(err) return err;
         res.json( data );
     });
