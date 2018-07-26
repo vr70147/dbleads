@@ -64,12 +64,11 @@ const getOneCampaign = async ( req, res ) => {
     res.json( campaignID.campaignName );
 }
 
-const deleteCampaign = ( req, res ) => {
-    console.log("ok");
+const deleteCampaign = async ( req, res ) => {    
     const id = req.params.id;
-    Campaigns.remove({ _id: id }),( err, deleted ) => {
+    await Campaigns.remove({ _id: id }),( err, deleted ) => {
         if( err ) throw err;
-        console.log('Campaign has deleted successfuly');
+        res.json('Campaign has deleted successfuly');
     };
 };
 const MiddleWares = {
