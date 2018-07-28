@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section >
    <app-popup *ngIf="createCampaign" (click)="focusOutFunction($event)" class="popUpBg"></app-popup>
   <div class="campaign_cont" >
@@ -13,3 +14,20 @@
       </div>
   </div>
 </section>
+=======
+<section >
+   <app-popup *ngIf="createCampaign" (click)="focusOutFunction($event)" class="popUpBg"></app-popup>
+  <div class="campaign_cont" >
+      <div class="campaign_div" *ngFor="let campaign of campaigns">
+        <h3>{{ campaign.campaignName }}</h3>
+        <h4>Number of leads: {{ campaign.lead.length }}</h4>
+        <button (click)="viewCampaign(campaign._id)">View campaign</button>
+        <hr>
+        <div>
+            <button>Change name</button>
+            <button (click)="deleteCampaign(campaign._id)">Delete</button>
+        </div>
+      </div>
+  </div>
+</section>
+>>>>>>> 41d3ec41f7054c4cd65092d2d869d523602d7a37
