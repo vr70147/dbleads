@@ -13,16 +13,15 @@ export class FunctionsComponent implements OnInit {
   constructor( private service: HeroService ) { }
 
   ngOnInit() {
-    this.service.openPopup(false);
-    if (this.subDomain !== 'leads') {
-      this.switchTabs = true;
-    } else {
-      this.switchTabs = false;
-    }
     console.log(this.switchTabs);
+    this.service.openPopup( false );
     this.service.switchTabs.subscribe((res: boolean) => {
       this.switchTabs = res;
+      console.log(this.switchTabs);
     });
+    if ( this.subDomain === 'leads') {
+      this.switchTabs = true;
+    }
   }
   openCreateCampaignDialog() {
     this.service.openPopup( this.openPopup );

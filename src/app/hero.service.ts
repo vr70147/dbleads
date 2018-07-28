@@ -18,14 +18,12 @@ export class HeroService {
   showUser = this.user.asObservable();
   private campaignId = new BehaviorSubject<string>('');
   onCampaignId = this.campaignId.asObservable();
-  private switch = new BehaviorSubject<any>(true);
+  private switch = new BehaviorSubject<any>(false);
   switchTabs = this.switch.asObservable();
 
-
-  constructor( private http: HttpClient ) {
-  }
-  switchFunctions(bool) {
-    this.switch.next(bool);
+  constructor( private http: HttpClient ) {}
+  switchFunctions( bool ) {
+    this.switch.next( bool );
   }
   openPopup( bool ) {
     this.boolean.next( bool );
@@ -36,14 +34,12 @@ export class HeroService {
   getClickedCampaignId( id ) {
     this.campaignId.next( id );
   }
-
   getSession() {
     return this.http.get( this.sessionUrl );
   }
   getLeads( id ) {
     return this.http.get( this.getLeadsUrl + '/' + id );
   }
-
   getCampaign() {
     return this.http.get( this.getCampaignUrl );
   }
@@ -56,11 +52,9 @@ export class HeroService {
   postCampign( campName ) {
     return this.http.put( this.postCampaignUrl, campName );
   }
-
   postLogin( arg: object ) {
     return this.http.post( this.loginUrl, arg );
   }
-
   logout() {
     return this.http.get( this.logoutUrl );
   }
