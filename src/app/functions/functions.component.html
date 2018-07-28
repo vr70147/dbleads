@@ -1,6 +1,14 @@
 <section>
-<button class="btn" (click)="openCreateCampaignDialog()"><i class="far fa-plus-square"></i> New campaign</button>
-<button class="btn"><i class="far fa-plus-square"></i> New campaign</button>
-<button class="btn"><i class="far fa-plus-square"></i> New campaign</button>
-<button class="btn"><i class="far fa-plus-square"></i> New campaign</button>
+    <div class="campaign" *ngIf="!switchTabs">
+        <button class="btn" (click)="openCreateCampaignDialog()"><i class="far fa-plus-square"></i> New campaign</button>
+        <button class="btn"><i class="far fa-plus-square"></i> New campaign</button>
+        <button class="btn"><i class="far fa-plus-square"></i> New campaign</button>
+        <button class="btn"><i class="far fa-plus-square"></i> New campaign</button>
+    </div>
+    <div class="leads" *ngIf="switchTabs">
+        <button class="btn"><i class="far fa-plus-square"></i> Edit leads</button>
+        <button class="btn"><i class="far fa-plus-square"></i> Delete leads</button>
+        <button class="btn"><i class="far fa-plus-square"></i> Export to excel</button>
+        <button class="btn"><i class="far fa-plus-square"></i> Send to email</button>
+    </div>
 </section>

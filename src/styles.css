@@ -2,8 +2,11 @@ html, body {
   font-family: 'Exo', sans-serif;
   display: flex;
   flex-wrap: wrap;
+  overflow: auto;
   width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 h1 {
   font-size: 36px;
@@ -47,4 +50,7 @@ app-campaigns, app-unauthorized, app-register, app-leads {
   width: 85%;
   display: inline-flex;
   margin-top: 0;
+  position: fixed;
+  right: 0;
+  top: 7.5%;
 }

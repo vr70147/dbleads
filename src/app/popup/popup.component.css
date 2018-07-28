@@ -4,7 +4,7 @@
     top: 30%;
     left:50%;
     width: 300px;
-    height: 210px;
+    height: 230px;
     background-color: #393F54;
     align-content: center;
     flex-direction: column;
@@ -19,11 +19,22 @@
       border-bottom: 1px solid lightgray;
       width: 80%;
       height: 50px;
-    }
-  /* .createCampaign hr {
-      background-color: lightgray;
-      width: 80%;
-  } */
+  }
+  .close {
+      background: none;
+      border: none;
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      display: inline-flex;
+      align-self: flex-end;
+      outline: none;
+  }
+
+  .fa {
+    color: lightgray;
+    font-size: 20px;
+  }
   .input-field {
     display: inline-flex;
     width: 80%;

@@ -1,12 +1,18 @@
 app-header {
-  height: 80px;
+  height: 7%;
   width: 100%;
   display: inline-flex;
   margin: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 app-functions {
   height: 100%;
   width: 15%;
   display: inline-flex;
+  position: fixed;
+  left:0;
+  top: 7.5%;
 }
 

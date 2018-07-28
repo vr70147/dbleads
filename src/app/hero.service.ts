@@ -18,14 +18,18 @@ export class HeroService {
   showUser = this.user.asObservable();
   private campaignId = new BehaviorSubject<string>('');
   onCampaignId = this.campaignId.asObservable();
+  private switch = new BehaviorSubject<any>(true);
+  switchTabs = this.switch.asObservable();
 
 
   constructor( private http: HttpClient ) {
   }
+  switchFunctions(bool) {
+    this.switch.next(bool);
+  }
   openPopup( bool ) {
     this.boolean.next( bool );
   }
-
   editUser( newUser ) {
     this.user.next( newUser );
   }
@@ -47,7 +51,6 @@ export class HeroService {
     return this.http.get( this.getOneCampaignUrl + '/' + id );
   }
   deleteCamp( id ) {
-    console.log(this.deleteCampUrl);
     return this.http.delete( this.deleteCampUrl + '/' + id );
   }
   postCampign( campName ) {

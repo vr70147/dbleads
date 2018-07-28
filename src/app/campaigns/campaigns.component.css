@@ -7,14 +7,14 @@ section {
   overflow-x: scroll;
 }
 .campaign_div {
-  width: 20%;
-  height: 29%;
+  min-width: 20%;
+  min-height: 29%;
+  padding: 1%;
   display: inline-flex;
   align-self: flex-start;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   margin: 2.5%;
-  margin-bottom: 1%;
   flex-direction: column;
   border-radius: 5px;
 }
@@ -42,9 +42,7 @@ section {
   width: 90%;
   text-align: center;
   margin: 0 auto;
-  margin-top: 3%;
   border-bottom: 1px solid lightgray;
-  height: 17%;
 }
 .campaign_div h4 {
   width: 90%;

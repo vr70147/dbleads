@@ -27,6 +27,7 @@ export class LeadsComponent implements OnInit {
     });
   }
   back() {
+    this.service.switchFunctions( false );
     this.router.navigate( ['campaigns'] );
   }
 }

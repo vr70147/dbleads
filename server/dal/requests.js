@@ -29,7 +29,7 @@ const addCampaign = (req, res, next ) => {
         });
     });
 };
-const postLeads = ( req, res, next ) => {
+const postLeads = ( req, res, done ) => {
     const id = req.params.id;
     const leads = new Leads({
         campaign: id,
@@ -44,6 +44,7 @@ const postLeads = ( req, res, next ) => {
         address: req.body.address,
     });
     leads.save(( err, data ) => {
+        Campaigns.update({ _id: data.campaign }, { $push: { lead: data }}, done );
         if(err) return err;
         res.json( data );
     });
@@ -57,26 +58,17 @@ const getUserCampaign = async ( req, res ) => {
     }
 };
 
-const countLeads = async ( req, res ) => {
-    let arr = [];
-
-    let arrOfNames = await Leads.find({ });
-    arr = arrOfName.length;
-    res.json(arr);
-    // let getLeads = await Leads.find({});
-    // res.json(getLeads);
-}
 const getOneCampaign = async ( req, res ) => {
     const id = req.params.id;
     let campaignID = await Campaigns.findOne({_id: id});
     res.json( campaignID.campaignName );
 }
 
-const deleteCampaign = async ( req, res ) => {
-    console.log("ok");
+const deleteCampaign = async ( req, res ) => {    
     const id = req.params.id;
-    Campaigns.remove({ _id: id }),( err, deleted ) => {
-        console.log('Campaign has deleted successfuly');
+    await Campaigns.remove({ _id: id }),( err, deleted ) => {
+        if( err ) throw err;
+        res.json('Campaign has deleted successfuly');
     };
 };
 const MiddleWares = {
@@ -85,7 +77,6 @@ const MiddleWares = {
     addCampaign,
     getUserCampaign,
     getOneCampaign,
-    countLeads,
     deleteCampaign
 };
 
