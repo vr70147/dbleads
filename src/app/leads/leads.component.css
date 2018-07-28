@@ -51,3 +51,47 @@ td {
     font-size: 25px;
     height: 50px;
 }
+.pickLead {
+    height: 25px;
+    width: 25px;
+    background: none;
+}
+.read, .unread, .inProgress {
+    height: 25px;
+    width: 25px;
+    border: none;
+    outline: none;
+    margin: 5px;
+}
+.read {
+    background-color: lightgreen;
+}
+.unread {
+    background-color: tomato;
+}
+.inProgress {
+    background-color: khaki;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 90px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

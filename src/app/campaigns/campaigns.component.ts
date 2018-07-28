@@ -12,6 +12,8 @@ export class CampaignsComponent implements OnInit {
   userObj: Object;
   userId: String;
   campaigns: Object;
+  campaignDate: any;
+  dateParse: any;
   campaignId: String;
   createCampaign: Boolean;
   deleteMsg: Object;
@@ -23,8 +25,10 @@ export class CampaignsComponent implements OnInit {
         this.router.navigate( [''] );
       }
     });
-    await this.service.getCampaign().subscribe(( res: object ) => {
+    await this.service.getCampaign().subscribe(( res: any ) => {
       this.campaigns = res;
+      this.campaignDate = this.formatDate( res[0].creationDate );
+      console.log(res[0].creationDate);
     });
     this.service.showBoolean.subscribe(( res: boolean ) => {
       this.createCampaign = res;
@@ -53,6 +57,28 @@ export class CampaignsComponent implements OnInit {
     if (e.target.classList[0] === 'popUpBg') {
       this.service.openPopup(false);
     }
+  }
+  formatDate( dates ) {
+    const date = new Date( dates );
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
+
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
   }
 }
 

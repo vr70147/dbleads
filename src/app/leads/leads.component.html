@@ -6,6 +6,8 @@
   </div>
     <table *ngIf="flag">
         <tr>
+            <th></th>
+            <th>Status</th>
             <th *ngIf="leads[0].fname">First name</th>
             <th *ngIf="leads[0].lname">Last name</th>
             <th *ngIf="leads[0].fullname">Full name</th>
@@ -17,6 +19,8 @@
             <th *ngIf="leads[0].address">Address</th>
         </tr>
         <tr *ngFor="let lead of leads">
+          <td><input type="checkbox" class="pickLead"></td>
+          <td><button class="read tooltip"><span class="tooltiptext">read</span></button><button class="unread tooltip"><span class="tooltiptext">unread</span></button><button class="inProgress tooltip"><span class="tooltiptext">In progress</span></button></td>
           <td *ngIf="lead.fname">{{ lead.lname }}</td>
           <td *ngIf="lead.lname">{{ lead.lname }}</td>
           <td *ngIf="lead.fullname">{{ lead.fullname }}</td>

@@ -10,6 +10,7 @@ import { HeroService } from '../hero.service';
   </button>
     <h2>Create campaign</h2>
     <input type="text" class="input-field" [(ngModel)]="campaignName" placeholder="Enter campaign's name">
+    <input type="text" class="input-field" [(ngModel)]="campaignLink" placeholder="Enter website's link">
     <button class="form-button" (click)="sendCampaign()">Create</button>
 </div>
   `,
@@ -17,6 +18,7 @@ import { HeroService } from '../hero.service';
 })
 export class PopupComponent implements OnInit {
   campaignName: String;
+  campaignLink: String;
   userObj: Object;
   constructor( private service: HeroService ) { }
 
@@ -24,7 +26,8 @@ export class PopupComponent implements OnInit {
   }
   async sendCampaign() {
     this.userObj = {
-      campaignName: this.campaignName
+      campaignName: this.campaignName,
+      campaignLink: this.campaignLink
     };
     await this.service.postCampign( this.userObj ).subscribe(( res: any ) => {
       this.service.openPopup(false);

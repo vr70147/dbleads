@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
 const UserSchema = new Schema({
-    companyName: String,
-    street: String,
-    city: String,
-    email: String,
-    password: String,
-    confirmPassword: String,
+    companyName: { type: String },
+    street: { type: String },
+    city: { type: String },
+    email: { type: String, match: [/\S+@\S+\.\S+/, 'is invalid']},
+    password: { type: String },
+    confirmPassword: { type: String },
 });
 
 UserSchema.methods.encryptPassword = function(password){

@@ -47,6 +47,8 @@ section {
 .campaign_div h4 {
   width: 90%;
   align-self: center;
+  margin: 0;
+  margin-top: 10px;
 }
 .campaign_div button {
   display: inline-flex;

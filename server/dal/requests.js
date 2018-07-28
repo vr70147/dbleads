@@ -12,18 +12,19 @@ const getLeads = ( req, res, next ) => {
     });
 };
 
-const addCampaign = (req, res, next ) => {
+const addCampaign = (req, res, next) => {
     const campaigns = new Campaigns({
         _id: new mongoose.Types.ObjectId(),
         userId : req.session.passport.user._id,
-        campaignName: req.body.campaignName
+        campaignName: req.body.campaignName,
+        campaignLink: req.body.campaignLink
     });
     Campaigns.findOne({ campaignName: req.body.campaignName }, ( err, existingName ) => {
         if( existingName ) {
             return res.send("this campaign name is already exist");
         }
         campaigns.save(( err, campaigns ) => {
-            if(err) return err;
+            if (err) return err;
             res.json( campaigns );
             return next();
         });
