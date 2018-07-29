@@ -31,9 +31,13 @@ export class LeadsComponent implements OnInit {
     this.service.switchFunctions( false );
     this.router.navigate( ['campaigns'] );
   }
-  changeColor( data, color ) {
-    const leadRow = document.querySelectorAll('.a' + data );
-    for ( let i = 0 ; i < leadRow.length ; i++ ) {
+  changeColor( data: String, color: String) {
+    const leadRow = document.querySelector('.a' + data );
+    if (leadRow.classList[0] === 'a' + data) {
+      this.switchColor(color);
     }
+  }
+  switchColor(color) {
+    return this.getColor = color;
   }
 }

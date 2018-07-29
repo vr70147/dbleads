@@ -20,16 +20,16 @@
         </tr>
         <tr *ngFor="let lead of leads">
           <td><input type="checkbox" class="pickLead"></td>
-          <td><button class="read tooltip" (click)="changeColor(lead._id, 'lightgreen')" ><span class="tooltiptext">read</span></button><button class="unread tooltip" (click)="changeColor(lead._id, 'tomato')"><span class="tooltiptext">unread</span></button><button class="inProgress tooltip" (click)="changeColor(lead._id, 'haki')"><span class="tooltiptext">In progress</span></button><button class="reset tooltip" (click)="changeColor(lead._id, 'white')"><i class="fas fa-undo fa-reset"></i><span class="tooltiptext">Reset color</span></button></td>
-          <td *ngIf="lead.fname" [ngStyle]="{'background-color': getColor }" class="a{{ lead._id }}"> {{ lead.lname }}</td>
-          <td *ngIf="lead.lname" [ngStyle]="{'background-color': getColor }" class="a{{ lead._id }}">{{ lead.lname }}</td>
-          <td *ngIf="lead.fullname" [ngStyle]="{'background-color': getColor }" class="a{{ lead._id }}">{{ lead.fullname }}</td>
-          <td *ngIf="lead.email" [ngStyle]="{'background-color': getColor }" class="a{{ lead._id }}">{{ lead.email }}</td>
-          <td *ngIf="lead.phone" [ngStyle]="{'background-color': getColor }" class="a{{ lead._id }}">{{ lead.phone }}</td>
-          <td *ngIf="lead.city" [ngStyle]="{'background-color': getColor }" class="a{{ lead._id }}">{{ lead.city }}</td>
-          <td *ngIf="lead.street" [ngStyle]="{'background-color': getColor }" class="a{{ lead._id }}">{{ lead.street }}</td>
-          <td *ngIf="lead.street_num" [ngStyle]="{'background-color': getColor }" class="a{{ lead._id }}">{{ lead.street_num }}</td>
-          <td *ngIf="lead.address" [ngStyle]="{'background-color': getColor }" class="a{{ lead._id }}">{{ lead.address }}</td>
+          <td><button class="read tooltip" (click)="changeColor(lead._id, 'lightgreen')" ><span class="tooltiptext">read</span></button><button class="unread tooltip" (click)="changeColor(lead._id, 'tomato')"><span class="tooltiptext">unread</span></button><button class="inProgress tooltip" (click)="changeColor(lead._id, 'khaki')"><span class="tooltiptext">In progress</span></button><button class="reset tooltip" (click)="changeColor(lead._id, 'white')"><i class="fas fa-undo fa-reset"></i><span class="tooltiptext">Reset color</span></button></td>
+          <td *ngIf="lead.fname" [ngStyle]="{'background-color': getColor}" class="a{{ lead._id }}"> {{ lead.lname }}</td>
+          <td *ngIf="lead.lname" [ngStyle]="{'background-color': getColor}" class="a{{ lead._id }}">{{ lead.lname }}</td>
+          <td *ngIf="lead.fullname" [ngStyle]="{'background-color': getColor}" class="a{{ lead._id }}">{{ lead.fullname }}</td>
+          <td *ngIf="lead.email" [ngStyle]="{'background-color': getColor}" class="a{{ lead._id }}">{{ lead.email }}</td>
+          <td *ngIf="lead.phone" [ngStyle]="{'background-color': getColor}" class="a{{ lead._id }}">{{ lead.phone }}</td>
+          <td *ngIf="lead.city" [ngStyle]="{'background-color': getColor}" class="a{{ lead._id }}">{{ lead.city }}</td>
+          <td *ngIf="lead.street" [ngStyle]="{'background-color': getColor}" class="a{{ lead._id }}">{{ lead.street }}</td>
+          <td *ngIf="lead.street_num" [ngStyle]="{'background-color': getColor}" class="a{{ lead._id }}">{{ lead.street_num }}</td>
+          <td *ngIf="lead.address" [ngStyle]="{'background-color': getColor}" class="a{{ lead._id }}">{{ lead.address }}</td>
       </tr>
     </table>
 </section>
