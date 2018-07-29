@@ -13,6 +13,7 @@ export class LeadsComponent implements OnInit {
   flag: Boolean = false;
   loading: Boolean = false;
   title: String;
+  getColor: any;
   constructor( private service: HeroService, private router: Router ) { }
 
   async ngOnInit() {
@@ -29,5 +30,10 @@ export class LeadsComponent implements OnInit {
   back() {
     this.service.switchFunctions( false );
     this.router.navigate( ['campaigns'] );
+  }
+  changeColor( data, color ) {
+    const leadRow = document.querySelectorAll('.a' + data );
+    for ( let i = 0 ; i < leadRow.length ; i++ ) {
+    }
   }
 }

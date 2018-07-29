@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 Tasks:
     New Task:
         ☐ to check: why do i need to click Delete Twice to remove the campaign
-=======
-Tasks:
-    New Task:
-        ☐ to check: why do i need to click Delete Twice to remove the campaign
->>>>>>> 41d3ec41f7054c4cd65092d2d869d523602d7a37
-        ☐ create validation of empty feild to create new campaign input 
+        ☐ create validation of empty feild to create new campaign input
+        ☐ leads - disable edit lead if checkbox not checked
