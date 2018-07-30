@@ -14,6 +14,7 @@ export class LeadsComponent implements OnInit {
   loading: Boolean = false;
   title: String;
   getColor: any;
+  colors: any;
   constructor( private service: HeroService, private router: Router ) { }
 
   async ngOnInit() {
@@ -31,13 +32,15 @@ export class LeadsComponent implements OnInit {
     this.service.switchFunctions( false );
     this.router.navigate( ['campaigns'] );
   }
-  changeColor( data: String, color: String) {
-    const leadRow = document.querySelector('.a' + data );
-    if (leadRow.classList[0] === 'a' + data) {
-      this.switchColor(color);
+  changeColor( data, color) {
+    this.getColor = color;
+    const classList = [];
+    const tdElements = document.getElementsByTagName('td');
+    for ( let i = 0 ; i < tdElements.length ; i++ ) {
+      if ( tdElements[i].classList[0] === 'a' + data ) {
+        classList.push(tdElements[i].classList[0]);
+        tdElements[i].style.backgroundColor = color;
+      }
     }
-  }
-  switchColor(color) {
-    return this.getColor = color;
   }
 }
