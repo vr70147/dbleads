@@ -12,6 +12,7 @@ export class HeroService {
   loginUrl = 'http://localhost:3000/users/login';
   logoutUrl = 'http://localhost:3000/users/logout';
   deleteCampUrl = 'http://localhost:3000/deletecampaign';
+  colorUrl = 'http://localhost:3000/editColors'
   private boolean = new BehaviorSubject<any>(true);
   showBoolean = this.boolean.asObservable();
   private user = new BehaviorSubject<string>('');
@@ -57,5 +58,8 @@ export class HeroService {
   }
   logout() {
     return this.http.get( this.logoutUrl );
+  }
+  sendColor( obj ) {
+    return this.http.patch( this.colorUrl + '/' + obj.leadId, obj );
   }
 }

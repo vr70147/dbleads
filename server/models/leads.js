@@ -20,7 +20,10 @@ const leadSchema = new Schema({
     agree: { type: Boolean },
     age: { type: Number },
     comment: { type: String },
-    source: { type: String },    
+    source: { type: String },
+    colors: [
+        { type: String }
+    ]   
 });
 const Leads = mongoose.model('leads', leadSchema); 
 module.exports = Leads;

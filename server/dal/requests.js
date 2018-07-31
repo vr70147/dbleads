@@ -72,13 +72,20 @@ const deleteCampaign = async ( req, res ) => {
         res.json('Campaign has deleted successfuly');
     };
 };
+
+const saveColor = ( req, res, done ) => {
+    const id = req.params.id;
+    Leads.update({ _id: req.body.leadId }, { $push: { colors: req.body.color }}, done );
+}
+
 const MiddleWares = {
     getLeads,
     postLeads,
     addCampaign,
     getUserCampaign,
     getOneCampaign,
-    deleteCampaign
+    deleteCampaign,
+    saveColor
 };
 
 module.exports = MiddleWares;

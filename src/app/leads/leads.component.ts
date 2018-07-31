@@ -24,6 +24,15 @@ export class LeadsComponent implements OnInit {
       this.service.getOneCampaign( this.id ).subscribe(( res: any ) => {
         this.title = res;
       });
+      const tdElements = document.getElementsByTagName('td');
+      console.log(tdElements.length);
+      for ( let i = 0 ; i < tdElements.length ; i++ ) {
+        console.log('ok');
+        console.log(tdElements[i].classList[0] === 'a' + response._id);
+        if ( tdElements[i].classList[0] === 'a' + response._id ) {
+          tdElements[i].style.backgroundColor = response.colors[0];
+        }
+      }
       this.loading = true;
       this.flag = true;
     });
@@ -35,6 +44,10 @@ export class LeadsComponent implements OnInit {
   changeColor( data, color) {
     this.getColor = color;
     const classList = [];
+    const colorObj = {
+      color: color,
+      leadId: data
+    };
     const tdElements = document.getElementsByTagName('td');
     for ( let i = 0 ; i < tdElements.length ; i++ ) {
       if ( tdElements[i].classList[0] === 'a' + data ) {
@@ -42,5 +55,8 @@ export class LeadsComponent implements OnInit {
         tdElements[i].style.backgroundColor = color;
       }
     }
+    this.service.sendColor( colorObj ).subscribe(( res: any ) => {
+      console.log(res);
+    });
   }
 }
