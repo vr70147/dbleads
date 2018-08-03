@@ -25,16 +25,16 @@ export class CampaignsComponent implements OnInit {
         this.router.navigate( [''] );
       }
     });
-    await this.service.getCampaign().subscribe(( res: any ) => {
-      this.campaigns = res;
-      this.campaignDate = this.formatDate( res[0].creationDate );
-      console.log(res[0].creationDate);
-    });
+    await this.getAllCampaigns();
     this.service.showBoolean.subscribe(( res: boolean ) => {
       this.createCampaign = res;
-      this.service.getCampaign().subscribe(( response: object ) => {
-        this.campaigns = response;
-      });
+      this.getAllCampaigns();
+    });
+  }
+  getAllCampaigns() {
+    this.service.getCampaign().subscribe(( res: any ) => {
+      this.campaigns = res;
+      this.campaignDate = this.service.formatDate( res[0].creationDate );
     });
   }
   async viewCampaign( id ) {
@@ -45,40 +45,15 @@ export class CampaignsComponent implements OnInit {
   }
   async deleteCampaign( id ) {
     await this.service.deleteCamp( id ).subscribe( ( res: object ) => {
-      console.log('1');
       this.deleteMsg = res;
     });
-    await this.service.getCampaign().subscribe(( response: object ) => {
-      console.log('2');
-      this.campaigns = response;
-    });
+    await this.getAllCampaigns();
+
   }
   focusOutFunction(e) {
     if (e.target.classList[0] === 'popUpBg') {
       this.service.openPopup(false);
     }
-  }
-  formatDate( dates ) {
-    const date = new Date( dates );
-    const monthNames = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
-
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
   }
 }
 

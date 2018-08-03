@@ -15,11 +15,9 @@ export class LeadsComponent implements OnInit {
   title: String;
   getColor: any;
   colors: any;
-  arrayOfColors: String[] = [];
   colorsFromStorage: String[];
 
   constructor( private service: HeroService, private router: Router ) { }
-
   async ngOnInit() {
     this.id = window.location.pathname.split( '/' )[2];
     await this.service.getLeads( this.id ).subscribe(( response: any ) => {
@@ -27,29 +25,20 @@ export class LeadsComponent implements OnInit {
       this.service.getOneCampaign( this.id ).subscribe(( res: any ) => {
         this.title = res;
       });
-      const tdElements = document.getElementsByTagName('td');
-      
       this.colorsFromStorage = JSON.parse(localStorage.getItem('color'));
-      this.service.genericForLoop( tdElements, '', this.colorsFromStorage  )
+      this.service.genericForLoop( '', this.colorsFromStorage  )
       this.loading = true;
       this.flag = true;
     });
   }
-  
   back() {
     this.service.switchFunctions( false );
     this.router.navigate( ['campaigns'] );
   }
   changeColor( data, color) {
     this.getColor = color;
-    const colorObj = {
-      color: color,
-      leadId: data
-    };
-    const tdElements = document.getElementsByTagName('td');
-    console.log(data);
-    this.service.genericForLoop(tdElements, data, color);
-    this.arrayOfColors.push(color);
-    localStorage.setItem('color', JSON.stringify(this.arrayOfColors));
+    this.service.genericForLoop(data, color);
+    this.colorsFromStorage.push(color+'/'+data);
+    localStorage.setItem('color', JSON.stringify(this.colorsFromStorage));
   }
 }

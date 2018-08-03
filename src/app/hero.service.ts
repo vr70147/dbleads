@@ -62,26 +62,31 @@ export class HeroService {
   sendColor(obj) {
     return this.http.patch(this.colorUrl + '/' + obj.leadId, obj);
   }
-  genericForLoop(element, data, color) {
-    console.log(typeof (color));
+  genericForLoop(data, color) {
+    const tdElements = document.getElementsByTagName('td');
     if (typeof (color) === 'string') {
-      for (let i = 0; i < element.length; i++) {
-        if (element[i].classList[0] === 'a' + data) {
-          element[i].style.backgroundColor = color;
+      for (let i = 0; i < tdElements.length; i++) {
+        if (tdElements[i].classList[0] === 'a' + data) {
+          tdElements[i].style.backgroundColor = color;
         }
       }
     } else if (typeof (color) === 'object') {
         setTimeout(() => {
-          console.log(element);
-          for (let i = 0; i < element.length; i++) {
-            console.log(element[i].length);
-              for ( let j = 0; j < element[i].length - 2; i++ ) {
-                if ( element[j].classList[0] === 'a' + data ) {
-                  element[j].style.backgroundColor = color[j];
-                }
-              }
-            }  
-        }, 500);
+          for (let i = 0; i < tdElements.length; i++) {
+            for ( let j = 0; j < color.length; j++ )
+              if (tdElements[i].classList[0] === 'a' + color[j].split('/')[1]) {
+                tdElements[i].style.backgroundColor = color[j].split('/')[0];
+            }    
+          }  
+        }, 200);
       }
-    }
   }
+  formatDate( dates ) {
+    const date = new Date( dates );
+    const monthNames = [ 'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec' ];
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+  }
+}
