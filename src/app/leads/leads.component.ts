@@ -15,6 +15,9 @@ export class LeadsComponent implements OnInit {
   title: String;
   getColor: any;
   colors: any;
+  arrayOfColors: String[] = [];
+  colorsFromStorage: String[];
+
   constructor( private service: HeroService, private router: Router ) { }
 
   async ngOnInit() {
@@ -25,38 +28,28 @@ export class LeadsComponent implements OnInit {
         this.title = res;
       });
       const tdElements = document.getElementsByTagName('td');
-      console.log(tdElements.length);
-      for ( let i = 0 ; i < tdElements.length ; i++ ) {
-        console.log('ok');
-        console.log(tdElements[i].classList[0] === 'a' + response._id);
-        if ( tdElements[i].classList[0] === 'a' + response._id ) {
-          tdElements[i].style.backgroundColor = response.colors[0];
-        }
-      }
+      
+      this.colorsFromStorage = JSON.parse(localStorage.getItem('color'));
+      this.service.genericForLoop( tdElements, '', this.colorsFromStorage  )
       this.loading = true;
       this.flag = true;
     });
   }
+  
   back() {
     this.service.switchFunctions( false );
     this.router.navigate( ['campaigns'] );
   }
   changeColor( data, color) {
     this.getColor = color;
-    const classList = [];
     const colorObj = {
       color: color,
       leadId: data
     };
     const tdElements = document.getElementsByTagName('td');
-    for ( let i = 0 ; i < tdElements.length ; i++ ) {
-      if ( tdElements[i].classList[0] === 'a' + data ) {
-        classList.push(tdElements[i].classList[0]);
-        tdElements[i].style.backgroundColor = color;
-      }
-    }
-    this.service.sendColor( colorObj ).subscribe(( res: any ) => {
-      console.log(res);
-    });
+    console.log(data);
+    this.service.genericForLoop(tdElements, data, color);
+    this.arrayOfColors.push(color);
+    localStorage.setItem('color', JSON.stringify(this.arrayOfColors));
   }
 }
